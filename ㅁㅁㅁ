@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<string.h>
+
+void reverse(char arr[])
+{
+    int len = strlen(arr);
+    for(int i = 0; i < len/2; i++)
+    {
+        char temp = arr[i];
+        arr[i] = arr[len - i - 1];
+        arr[len - i - 1] = temp;
+    }
+}
+
+int main(void)
+{
+    char A[10000], B[10000], C[10001];
+    
+    scanf("%s %s", A, B);
+    int long_len = strlen(A) > strlen(B) ? strlen(A) : strlen(B);
+    int short_len = strlen(A) < strlen(B) ? strlen(A) : strlen(B);
+    int alpha = 0;
+    
+    reverse(A);
+    reverse(B);
+    // printf("%s %s %d\n", A, B, strlen(A));
+    
+    for(int i = 0; i < short_len; i++)
+    {
+        int a = A[i], b = B[i];
+        if(a + b + alpha >= 10)
+            alpha = 1;
+        else
+            alpha = 0;
+            
+        C[i] = (a + b + alpha) % 10;
+        printf("%d %d\n", a, b);
+    }
+    for(int j = short_len; j < long_len; j++)
+    {
+        int a = A[j];
+        if(a + alpha >= 10)
+            alpha = 1;
+        else
+            alpha = 0;
+            
+        C[j] = (a + alpha) % 10;
+    }
+    
+    
+    printf("%s", C);
+}
