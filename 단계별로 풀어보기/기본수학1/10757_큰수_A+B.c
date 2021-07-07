@@ -46,7 +46,7 @@ char * add(char * A, char * B)
         if((StoD(A[i]) + StoD(B[i]) + up) > 9) up = 1;
         else up = 0;
     }
-    if(S[len] == '0') S[len] = '0';
+    if(S[len] == '0') S[len] = 0;
 
     reverse(S, strlen(S));
 
