@@ -17,6 +17,8 @@ int main(void)
                 L += 1;
             else    
                 R += 1;
+            if(L - R < 0)
+                break;
         } 
         if(L == R)
             cout << "YES" << endl;
