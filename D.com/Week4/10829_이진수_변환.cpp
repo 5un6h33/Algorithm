@@ -1,25 +1,19 @@
 #include<iostream>
-#include<cmath>
 
 using namespace std;
 
-void d_to_b(int num)
+void binary(unsigned long long n)
 {
-    if(num == 0 || num == 1)
-    {
-        cout << num;
-        return;
-    }
-    d_to_b(num / 2);
-    cout << num % 2;
+    if(n != 1) binary(n / 2);
+    cout << (n % 2);
 }
 
 int main(void)
 {
-    int n;
-
+    long long n;
     cin >> n;
-    d_to_b(n);
+    binary(n);
+    cout << endl;
 
     return 0;
 }
