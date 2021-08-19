@@ -30,7 +30,7 @@ int main(void)
             if(vis[i][j] || board[i][j] == 0) continue;
             vis[i][j] = 1;
             queue<pair<int, int> > Q;
-            Q.push({ i, j });
+            Q.push(pair<int, int> ( i, j ));
             temp = 0;
             while(!Q.empty())
             {
@@ -43,7 +43,7 @@ int main(void)
                     if(vis[nx][ny] || board[nx][ny] != 1) continue;
 
                     vis[nx][ny] = 1;
-                    Q.push({ nx, ny });
+                    Q.push(pair<int, int> ( nx, ny ));
                 }
             }
             count++;
@@ -51,7 +51,8 @@ int main(void)
         }
     }
 
-    cout << count << '\n' << max;
+    cout << count << '\n';
+    cout << max;
 
     return 0;
 }
