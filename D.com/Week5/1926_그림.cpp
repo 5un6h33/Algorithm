@@ -4,8 +4,8 @@
 using namespace std;
 #define X first
 #define Y second
-int board[500][500];
-bool vis[500][500];
+int board[502][502];
+bool vis[502][502];
 int n, m;
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
@@ -14,14 +14,10 @@ int main(void)
 {
     cin >> n >> m;
     for(int i = 0; i < n; i++)
-    {
         for(int j = 0; j < m; j++)
-        {
             cin >> board[i][j];
-        }
-    }
 
-    int count = 0, max = 0, temp = 0;
+    int count = 0, max = 0;
 
     for(int i = 0; i < n; i++)
     {
@@ -31,11 +27,12 @@ int main(void)
             vis[i][j] = 1;
             queue<pair<int, int> > Q;
             Q.push(pair<int, int> ( i, j ));
-            temp = 0;
+            int area = 0;
             while(!Q.empty())
             {
-                pair<int, int> cur = Q.front(); Q.pop(); temp++;
-                for(int dir = 0; dir < 4; dir++)
+                area++;
+                pair<int, int> cur = Q.front(); Q.pop();
+                for(int dir = 0; dir < 4; dir++)        
                 {
                     int nx = cur.X + dx[dir];
                     int ny = cur.Y + dy[dir];
@@ -47,7 +44,7 @@ int main(void)
                 }
             }
             count++;
-            if(temp > max)  max = temp;
+            if(area > max)  max = area;
         }
     }
 
