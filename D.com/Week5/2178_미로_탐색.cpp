@@ -119,21 +119,21 @@ int main(void)
         fill(dist[i], dist[i] + m, -1);
     
     queue<pair <int, int> > Q;
-    Q.push( { 0, 0 } );
+    Q.push(pair<int, int> ( 0, 0 ) );
     dist[0][0] = 0;
     while(!Q.empty())
     {
-        auto cur = Q.front();
+        pair<int, int> cur = Q.front();
         Q.pop();
 
         for(int dir = 0; dir < 4; dir++)
         {
             int nx = cur.X + dx[dir];
             int ny = cur.Y + dy[dir];
-            if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
-            if(dist[nx][ny] >= 0 || borad[nx][ny] != 1)  continue;
+            if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
+            if(dist[nx][ny] >= 0 || borad[nx][ny] != '1')  continue;
             dist[nx][ny] = dist[cur.X][cur.Y] + 1;
-            Q.push( { nx, ny } );
+            Q.push(pair<int, int>  ( nx, ny ) );
         }
     }
 
