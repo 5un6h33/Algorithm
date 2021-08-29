@@ -18,7 +18,6 @@ int compare(const void *a, const void *b)    // 오름차순 비교 함수 구�
 int main(void)
 {
     int n, k;
-    int arr[100000] = {0, };
 
     scanf("%d", &n);
 
