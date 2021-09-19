@@ -1,40 +1,58 @@
 #include<iostream>
+#include<stack>
+#include<string>
+
+#define MAX 26
 
 using namespace std;
 
-int gcd(int a, int b);
-int lcm(int a, int b);
+int alphabet[MAX];
 
 int main(void)
 {
-    int a, b;
-    cin >> a >> b;
+    int n, len;
+    cin >> n;
 
-    cout << gcd(a, b) << '\n' << lcm(a, b);
-}
+    string str;
+    cin >> str;
 
-int gcd(int a, int b)
-{
-    int tmp, n;
+    for(int i = 0; i < n; i++)
+        cin >> alphabet[i];
 
-    if(a < b)
+    stack<double> s;
+
+    for(int i = 0; i < str.length(); i++)
     {
-        tmp = a;
-        a = b;
-        b = tmp;
+        if(str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/')
+        {
+            double oper2 = s.top();
+            s.pop();
+            double oper1 = s.top();
+            s.pop();
+
+            switch (str[i])
+            {
+            case '+':
+                s.push(oper1 + oper2);
+                break;
+            case '-':
+                s.push(oper1 - oper2);
+                break;
+            case '*':
+                s.push(oper1 * oper2);
+                break;
+            case '/':
+                s.push(oper1 / oper2);
+                break;
+            }
+        }
+        else 
+            s.push(alphabet[str[i] - 'A']);
     }
 
-    while(b != 0)
-    {
-        n = a % b;
-        a = b;
-        b = n;
-    }
+    cout << fixed;
+    cout.precision(2);
+    cout << s.top();
 
-    return a;
-}
-
-int lcm(int a, int b)
-{
-    return a * b / gcd(a, b);
+    return 0;
 }

@@ -3,6 +3,8 @@
         "algorithm": "cpp",
         "iostream": "cpp",
         "ostream": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "__locale": "cpp",
+        "cstring": "cpp"
     }
 }
