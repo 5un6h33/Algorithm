@@ -1,37 +1,32 @@
 #include<stdio.h>
 #include<string.h>
 
-char str[1001];
-char stack[1001];
-
 int main(void)
 {
-    int n, j = 0;
+    int n, start, end;
     char *p;
-    scanf("%d", &n);
+    char str[1001];
 
+    scanf("%d", &n);
+    
     while(n--)
     {
+        start = end = 0;
         fflush(stdin);
         fgets(str, sizeof(str)-1, stdin);
-        // if((p=strchr(str,'\n')) != NULL) *p = '\0';
+        if((p=strchr(str,'\n')) != NULL) *p = ' ';
         // printf("%lu", strlen(str));
-        for(int i = 0; i < strlen(str) - 1; i++)
+        for(int i = 0; i <= strlen(str); i++)
         {
-            if(str[i] == 0x20 || str[i] == '\n')
+            if(str[i] == 0x20 || str[i] == 0x00)
             {
-                for(int k = strlen(stack) - 1; k >= 0; k--)
-                {
-                    printf("%c", stack[k]);
-                }
+                for(int k = end-1; k >= start; k--)
+                    printf("%c", str[k]);
                 printf(" ");
-                j = 0;
+                end = start = i + 1;
             }
             else 
-            {
-                stack[j] = str[i];
-                j++;
-            }
+                end++;
         }
         printf("\n");
     }
