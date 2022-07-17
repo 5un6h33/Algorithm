@@ -1,25 +1,32 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100001
 #define INF 2000000000
-using namespace std;
 
-vector<int> answer(2);
-int main()
+int N, start, end, min, sum;
+int arr[MAX];
+int answer[2];
+
+int compare(const void *a, const void *b)
 {
-    int N;
-    cin >> N;
-    vector<int> arr(N);
-    for (int i = 0; i < N; ++i)
-        cin >> arr[i];
-    sort(arr.begin(), arr.end());
+    return *(int *)a - *(int *)b;
+}
 
-    int start = 0;
-    int end = N - 1;
-    int min = INF;
+int main(void)
+{
+    scanf("%d", &N);
+    for (int i = 0; i < N; i++)
+        scanf("%d", &arr[i]);
+
+    qsort(arr, N, sizeof(int), compare);
+
+    start = 0;
+    end = N - 1;
+    min = INF;
+
     while (start < end)
     {
-        int sum = arr[start] + arr[end];
+        sum = arr[start] + arr[end];
 
         if (min > abs(sum))
         {
@@ -37,5 +44,7 @@ int main()
             end--;
     }
 
-    cout << answer[0] << " " << answer[1];
+    printf("%d %d\n", answer[0], answer[1]);
+
+    return 0;
 }
