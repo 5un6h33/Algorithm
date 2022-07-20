@@ -1,5 +1,10 @@
 #include <iostream>
 #include <queue>
+#include <deque>
+#include <string.h>
+#include <math.h>
+#include <cmath>
+#include <stack>
 #include <algorithm>
 
 using namespace std;
