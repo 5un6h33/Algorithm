@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int N, K, idx;
+int N, K, cnt;
 queue<int> q;
 
 int main(void)
@@ -20,23 +20,23 @@ int main(void)
 
     while (!q.empty())
     {
-        if (idx % K == 0)
+        cnt++;
+        if (cnt % K == 0)
         {
-            if (q.empty())
-                cout << q.front() << ">";
-            else
-                cout << q.front() << ", ";
+            int ans = q.front();
             q.pop();
+            if (q.empty())
+                cout << ans << ">";
+            else
+                cout << ans << ", ";
         }
         else
         {
-            q.push(q.front());
+            int ans = q.front();
             q.pop();
+            q.push(ans);
         }
-        idx++;
     }
-
-    cout << ">";
 
     return 0;
 }
